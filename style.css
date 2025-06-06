@@ -1,0 +1,911 @@
+/* Add this new rule for the select wrapper */
+.ikim-select-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* Add this new rule for the custom arrow */
+.ikim-select-wrapper::after {
+  content: "\25BC"; /* Unicode for a down-pointing triangle */
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--primary-color);
+}
+
+input,
+select:focus {
+  outline-color: var(--primary-color);
+  outline: 2;
+}
+
+button {
+  background-color: transparent;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--primary-color-darker);
+  cursor: pointer;
+  color: var(--light-text-color);
+  padding: var(--spacing-medium) var(--spacing-xl);
+}
+
+.ikim-button-primary-border {
+  width: fit-content;
+  position: relative;
+  background: linear-gradient(to top, hsla(39, 43%, 32%), hsl(40, 33%, 75%));
+  padding: 1px;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+.ikim-button-primary {
+  position: relative;
+  background: radial-gradient(
+    circle at var(--mouse-x, 50%) var(--mouse-y, 100%),
+    hsl(40, 33%, 75%) 0%,
+    hsl(39, 53%, 52%) 50%
+  );
+  color: var(--background-color);
+  border: none;
+  border-radius: calc(var(--border-radius) - 1px);
+  transition: background 0.3s ease;
+  z-index: 1;
+}
+.ikim-button-primary::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: inherit;
+  border-radius: inherit;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+  z-index: -1;
+}
+
+.ikim-button-primary:hover::before {
+  opacity: 1;
+}
+
+button.ikim-small {
+  border-radius: var(--border-radius-small);
+  padding: var(--spacing-small) var(--spacing-medium);
+}
+.ikim-button-primary-border.ikim-small {
+  border-radius: var(--border-radius-small);
+}
+
+.ikim-button-secundary {
+  background-color: transparent;
+  color: var(--light-text-color);
+  transition: 500ms;
+}
+.ikim-button-tertiary {
+  background-color: transparent;
+  border: none;
+}
+.ikim-pulse {
+  animation: pulse-animation 1.7s infinite;
+}
+
+@keyframes pulse-animation {
+  0% {
+    box-shadow: 0 0 0 0rem var(--primary-color);
+  }
+  100% {
+    box-shadow: 0 0 0 1rem rgba(255, 255, 255, 0);
+  }
+}
+
+.ikim-text-center {
+  text-align: center;
+}
+.ikim-text-highlight {
+  color: var(--secondary-color);
+  font-weight: 500;
+}
+.ikim-button-secundary,
+.ikim-button-tertiary,
+a {
+  transition: 300ms;
+}
+.ikim-button-secundary:hover,
+.ikim-button-tertiary:hover,
+a:hover {
+  color: var(--primary-color);
+}
+.ikim-button-secundary:hover {
+  background-color: var(--primary-color-darker);
+  border-color: var(--primary-color);
+  color: var(--background-color);
+}
+
+/* Layout */
+section {
+  padding: var(--spacing-xxl) 0;
+}
+.ikim-container {
+  max-width: 84.875rem;
+  margin: 0 auto;
+  padding: var(--spacing-large) var(--spacing-medium);
+  position: relative;
+  overflow: hidden;
+}
+.ikim-container.no-top {
+  padding-top: 0;
+}
+
+/* Hero section */
+header {
+  background-image: url(assets/ikimhero.jpg);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.ikim-nav-wrapper {
+  position: relative;
+  border-radius: var(--border-radius);
+  /* background-image: var(--gradient-border-color);
+    padding: 1px;
+    width: 100%; */
+}
+/* .nav-shadow {
+    position: relative;
+    border-bottom: 1.2rem solid var(--shadow-color);
+    border-left: clamp(7rem, 20vw, 20rem) solid transparent;
+    border-right: clamp(7rem, 20vw, 20rem) solid transparent;
+    height: 0;
+    width: 70%;
+    margin: 0 auto;
+    rotate: 180deg;
+    filter: blur(1rem);
+    top: -1rem;
+} */
+
+nav {
+  font-family: var(--font-family-main);
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-medium);
+  align-items: center;
+  flex-wrap: wrap;
+  padding: var(--spacing-medium) 0;
+  /* background-color: var(--secondary-color); */
+  border-radius: calc(var(--border-radius) - 1px);
+  position: relative;
+  z-index: 1;
+}
+.ikim-nav-right {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+/* 
+#logo > a > img {
+  height: var(--spacing-large);
+} */
+
+.ikim-nav {
+  transition: top 0.3s; /* Smooth transition for the nav */
+  position: sticky; /* Make the nav fixed */
+  top: var(--spacing-medium); /* Start at the top */
+  width: 100%; /* Full width */
+  z-index: 3; /* Ensure it stays on top */
+}
+.ikim-nav.ikim-hidden {
+  top: -100px; /* Adjust this value based on your nav height to hide it */
+}
+
+.ikim-nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xl);
+}
+
+.ikim-nav-buttons > .ikim-button-tertiary {
+  font-size: var(--font-size-small);
+  padding: 0 var(--spacing-medium);
+}
+.ikim-nav-buttons > .ikim-button-secundary {
+  font-size: var(--font-size-small);
+  padding: var(--spacing-small) var(--spacing-medium);
+  border-radius: var(--border-radius-small);
+}
+.ikim-nav-buttons-border {
+  position: relative;
+  border-radius: var(--border-radius);
+  background-image: var(--gradient-border-color);
+  padding: 1px;
+}
+.ikim-nav-buttons {
+  background-color: var(--secondary-color);
+  border-radius: calc(var(--border-radius) - 1px);
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: var(--spacing-medium);
+  border-radius: var(--border-radius);
+  /* border: 1px solid var(--primary-color); */
+  padding: var(--spacing-small) var(--spacing-medium);
+}
+
+.ikim-hero {
+  height: 90dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* background-size: 43rem; */
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  align-items: center;
+}
+.ikim-hero-image {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: contain;
+  max-width: 43rem;
+  min-width: 40rem;
+  bottom: 0;
+}
+.ikim-hero-content {
+  margin-bottom: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+.ikim-text-highlight {
+  color: var(--primary-color);
+}
+.ikim-hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--spacing-medium);
+}
+
+/* Intro section */
+.ikim-intro-cards-wrapper {
+  position: relative;
+  border-radius: var(--border-radius);
+  background-image: var(--gradient-border-color);
+  padding: 1px;
+  margin-bottom: var(--spacing-xxl);
+}
+
+.ikim-intro-cards {
+  background-color: var(--background-color);
+  border-radius: calc(var(--border-radius) - 1px);
+  padding: var(--spacing-xxl);
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
+  gap: var(--spacing-xl);
+}
+.ikim-intro-cards-title {
+  max-width: 23ch;
+}
+.ikim-intro-cards-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--spacing-xl);
+  align-content: center;
+  flex: 1 1 5rem;
+}
+
+.ikim-intro-card {
+  background-image: url(assets/laurel.svg);
+  background-size: contain;
+  background-position: center;
+  text-align: center;
+  background-repeat: no-repeat;
+  width: 11rem;
+  height: 7rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  flex-basis: 8rem;
+}
+
+.ikim-intro-video {
+  position: relative;
+  overflow: hidden;
+  max-width: 50rem;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 36%;
+}
+.ikim-intro-video-iframe {
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
+.ikim-video-shadow {
+  position: relative;
+  border-bottom: 1.2rem solid var(--shadow-color);
+  border-left: clamp(7rem, 20vw, 20rem) solid transparent;
+  border-right: clamp(7rem, 20vw, 20rem) solid transparent;
+  height: 0;
+  width: 60%;
+  margin: 0 auto;
+  rotate: 180deg;
+  filter: blur(1rem);
+  top: -0.5rem;
+  z-index: -1;
+}
+
+/* Beneficii section */
+.ikim-beneficii {
+  position: relative;
+  overflow: hidden;
+}
+#ikim-particles-js {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+#ikim-particles-js2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+.ikim-beneficii-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-large);
+  justify-content: center;
+  padding-top: var(--spacing-xxl);
+}
+
+.ikim-beneficii-card {
+  border-radius: var(--border-radius);
+  background-image: var(--gradient-border-color);
+  padding: 1px;
+  flex: 1 1 15.75rem;
+  /* max-width: 25rem;  */
+}
+
+.ikim-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-medium);
+  text-align: center;
+  background-color: var(--secondary-color);
+  border-radius: calc(var(--border-radius) - 1px);
+  padding: var(--spacing-xl) var(--spacing-medium);
+  position: relative;
+  z-index: 1;
+  height: 100%;
+}
+
+.ikim-card-content img {
+  width: 3rem;
+  margin: 0 auto;
+}
+
+/* roadmap section */
+
+.ikim-roadmap-cards {
+  border-radius: var(--border-radius);
+  background-image: var(--gradient-border-color);
+  padding: 1px;
+  margin-top: var(--spacing-xxl);
+  margin-bottom: var(--spacing-medium);
+}
+
+.ikim-roadmap-cards-content {
+  background: var(--gradient-background-color);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-medium);
+  align-items: center;
+  background-color: var(--secondary-color);
+  border-radius: calc(var(--border-radius) - 1px);
+  padding: var(--spacing-xxl);
+  position: relative;
+  z-index: 1;
+}
+.ikim-roadmap-card-content {
+  max-width: 40ch;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.ikim-roadmap-card-wrapper {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: var(--spacing-large);
+}
+
+.ikim-roadmap-card {
+  display: flex;
+  gap: var(--spacing-large);
+  align-items: center;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 4;
+  padding: var(--spacing-large);
+  background-color: hsla(0, 0%, 100%, 0.1);
+  border: 1px solid var(--shadow-color);
+  border-radius: var(--border-radius);
+}
+
+.ikim-roadmap-card:nth-child(2) img {
+  transform: rotate(35deg);
+}
+
+.ikim-roadmap-card:nth-child(4) img {
+  transform: rotate(75deg);
+}
+
+.ikim-label {
+  display: inline-block;
+  border-radius: var(--border-radius-small);
+  background-image: var(--gradient-border-color);
+  padding: 1px;
+  width: fit-content;
+}
+
+.ikim-label-background {
+  background-color: var(--secondary-color);
+  border-radius: calc(var(--border-radius-small) - 1px);
+  padding: var(--spacing-small) var(--spacing-medium);
+  position: relative;
+  z-index: 1;
+}
+
+/* lecture section */
+
+.ikim-lecture-container {
+  background-color: var(--text-color);
+  padding: var(--spacing-xxl);
+  border-radius: var(--border-radius);
+}
+.ikim-lecture-container > h2 {
+  color: var(--background-color);
+  padding-bottom: var(--spacing-xl);
+}
+
+.ikim-lecture-nav-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-medium);
+  padding-bottom: var(--spacing-xl);
+  justify-content: space-between; /* Added this line */
+}
+.ikim-filters {
+  display: flex;
+  gap: var(--spacing-medium);
+  flex-wrap: wrap;
+}
+
+.ikim-lecture-nav-filter.ikim-active {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  border: none;
+}
+
+.ikim-lectures-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-medium);
+}
+.ikim-lecture-card {
+  background-image: linear-gradient(to top, rgba(0, 0, 0), rgba(0, 0, 0, 0)),
+    url(assets/thumbnail-lecture.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: var(--spacing-medium) var(--spacing-large);
+  border-radius: var(--border-radius);
+  height: 20rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  flex-grow: 1;
+  flex-basis: 20rem;
+}
+
+.ikim-lecture-card-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-medium);
+  margin-top: var(--spacing-medium);
+  justify-content: space-between;
+}
+.ikim-lecture-price {
+  color: var(--primary-color);
+  font-weight: 700;
+  font-size: var(--font-size-large);
+}
+
+.ikim-lecture-cta {
+  margin-top: var(--spacing-medium);
+  text-align: center;
+}
+.ikim-lecture-cta > button {
+  color: var(--background-color);
+}
+
+/* about section */
+
+.ikim-about {
+  position: relative;
+}
+.ikim-about > .ikim-container {
+  overflow: visible;
+}
+.ikim-about-image {
+  position: absolute;
+  right: 6%;
+  top: -50%;
+  z-index: -5;
+  width: clamp(15rem, 15rem + 30vw, 54rem);
+}
+
+.ikim-about-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-medium);
+  padding: 0 var(--spacing-xxl);
+}
+.ikim-about-info {
+  max-width: 50ch;
+}
+.ikim-about-info > h2 {
+  padding-bottom: var(--spacing-large);
+}
+.ikim-about-info > p {
+  font-size: var(--font-size-large);
+}
+
+.ikim-about-info > p:nth-child(2) {
+  padding-bottom: var(--spacing-medium);
+}
+.ikim-about-info > p:nth-child(3) {
+  padding-bottom: var(--spacing-xl);
+}
+
+/* testimonials section */
+
+.ikim-testimonials-content {
+  border-radius: var(--border-radius);
+  background-image: var(--gradient-border-color);
+  padding: 1px;
+}
+
+.ikim-testimonials-wrapper {
+  background-color: var(--background-color);
+  border-radius: calc(var(--border-radius) - 1px);
+  padding: var(--spacing-xl) var(--spacing-xxl);
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-medium);
+  align-items: center;
+}
+
+.ikim-testimonials-wrapper > h2 {
+  padding: var(--spacing-xxl) 0;
+}
+
+.ikim-testimonials-cards {
+  display: none;
+}
+
+.ikim-displaySlide {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-medium);
+  justify-content: center;
+}
+
+.ikim-testimonials-card {
+  border-radius: var(--border-radius);
+  background-image: var(--gradient-border-color);
+  padding: 1px;
+  position: relative;
+}
+
+.ikim-testimonials-card-content {
+  background-color: var(--secondary-color);
+  border-radius: calc(var(--border-radius) - 1px);
+  padding: 0; /* Remove padding to allow full video coverage */
+  position: relative;
+  z-index: 1;
+  aspect-ratio: 9 / 16; /* This creates the vertical 9:16 aspect ratio */
+  display: flex;
+  overflow: hidden; /* Add this to ensure content doesn't overflow */
+}
+
+.ikim-testimonial-video {
+  width: 100%;
+
+  object-fit: cover;
+  border-radius: var(--border-radius);
+}
+
+.ikim-testimonial-author {
+  position: absolute;
+  bottom: var(--spacing-medium);
+  left: var(--spacing-medium);
+  z-index: 2;
+  color: var(--light-text-color); /* Ensure text is visible on video */
+}
+.ikim-testimonials-navigation {
+  position: absolute;
+  bottom: 35%;
+  width: 45%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.ikim-testimonials-navigation button {
+  border: none;
+  color: var(--primary-color);
+  font-size: var(--font-size-h3);
+}
+
+/* FAQ section */
+.ikim-faq-container {
+  padding: var(--spacing-xxl);
+  display: flex;
+  justify-content: center;
+}
+
+.ikim-faq-items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-medium);
+  width: 40rem;
+}
+
+.ikim-faq-item {
+  border-radius: var(--border-radius);
+  padding: var(--spacing-medium);
+  border: 1px solid var(--primary-color-darker);
+  background: transparent;
+}
+
+/* Handle the content visibility and animation */
+.ikim-faq-answer {
+  grid-template-rows: 0fr;
+  display: grid;
+  margin-top: 0;
+}
+
+.ikim-faq-answer > div {
+  overflow: hidden;
+}
+
+/* When details is open, expand the grid row */
+.ikim-faq-item[open] .ikim-faq-answer {
+  grid-template-rows: 1fr;
+  margin-top: var(--spacing-medium);
+}
+
+/* Question styling */
+.ikim-faq-question > h4 {
+  color: var(--primary-color);
+  position: relative;
+  cursor: pointer;
+  padding-right: 1.5rem;
+  margin: 0;
+}
+
+/* Plus/minus icon animation */
+.ikim-faq-question > h4::before,
+.ikim-faq-question > h4::after {
+  content: "";
+  display: block;
+  width: 1rem;
+  height: 0.1rem;
+  background-color: var(--primary-color);
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transition: transform 0.3s ease;
+}
+
+.ikim-faq-question > h4::after {
+  transform: rotate(90deg);
+}
+
+.ikim-faq-item[open] .ikim-faq-question > h4::before {
+  transform: rotate(45deg);
+}
+
+.ikim-faq-item[open] .ikim-faq-question > h4::after {
+  transform: rotate(-45deg);
+}
+
+/* Remove default marker */
+.ikim-faq-question::marker {
+  content: none;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+/* footer section */
+
+.ikim-footer-content {
+  border-radius: var(--border-radius);
+  background-image: var(--gradient-border-color);
+  padding: 1px;
+}
+.ikim-footer-wrapper {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  background-color: var(--secondary-color);
+  border-radius: calc(var(--border-radius) - 1px);
+  padding: var(--spacing-xxl);
+  position: relative;
+  z-index: 1;
+}
+
+.ikim-footer-about {
+  max-width: 40ch;
+}
+.ikim-footer-logo > a,
+img {
+  padding-bottom: var(--spacing-medium);
+}
+.ikim-footer-logo {
+  width: 10rem;
+}
+
+.ikim-footer-links > h3 {
+  color: var(--primary-color);
+  padding-bottom: var(--spacing-medium);
+}
+.ikim-footer-social-links > h3 {
+  color: var(--primary-color);
+  padding-bottom: var(--spacing-medium);
+}
+
+.ikim-copyright {
+  font-size: var(--font-size-small);
+  padding-bottom: var(--spacing-medium);
+  color: var(--primary-color);
+}
+
+.Ikim-Logo {
+  width: 10rem;
+}
+.ikim-lecture-sub {
+  font-size: var(--font-size-h3);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+.ikim-lecure-hero-container {
+  width: 100%;
+  margin-top: 5rem;
+  /* margin-top:10rem; */
+}
+.ikim-lecture-hero {
+  height: auto;
+}
+.ikim-lecture-herobg {
+  background-image: url(assets/lecturehero.jpg);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+.ikim-lecture-intro-video {
+  aspect-ratio: 16/9;
+}
+/* media queris */
+
+@media (max-width: 768px) {
+  iframe {
+    aspect-ratio: 9 / 16;
+  }
+  .ikim-testimonials-navigation {
+    position: relative;
+  }
+  .ikim-testimonials-navigation > button {
+    border: 1px solid var(--primary-color);
+  }
+  .ikim-intro-cards-title {
+    text-align: center;
+  }
+  .ikim-nav {
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items */
+  }
+  nav {
+    justify-content: center;
+  }
+  .ikim-nav-right {
+    order: -1; /* Move nav-right to the top */
+    width: 100%; /* Ensure it takes full width */
+    display: flex; /* Keep it as a flex container */
+    justify-content: center; /* Center the buttons */
+  }
+
+  #ikim-logo {
+    margin-top: var(--spacing-large);
+  }
+
+  nav > .ikim-button-tertiary {
+    display: none; /* Hide the button with class button-tertiary */
+  }
+  /* #logo > a > img {
+    height: auto;
+  } */
+  .ikim-displaySlide {
+    flex-wrap: nowrap;
+    gap: var(--spacing-small);
+  }
+  .ikim-footer-wrapper {
+    display: grid;
+    grid-template-columns: auto;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 568px) {
+  .ikim-about-content {
+    padding-top: calc(var(--spacing-xxl) * 3);
+  }
+  .ikim-about {
+    padding-top: 7rem;
+  }
+  .ikim-about-image {
+    top: -30%;
+  }
+  .ikim-intro-video {
+    position: relative;
+    overflow: hidden;
+    max-width: 50rem;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 56%;
+  }
+  .ikim-roadmap-card {
+    justify-content: center;
+    gap: var(--spacing-large);
+  }
+  .ikim-roadmap-card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .ikim-roadmap-card > img {
+    width: 4rem;
+  }
+  .ikim-roadmap-card-wrapper {
+    display: grid;
+    grid-template-columns: auto;
+  }
+}
