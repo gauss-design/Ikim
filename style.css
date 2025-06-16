@@ -21,7 +21,7 @@ select:focus {
   outline: 2;
 }
 
-button {
+.ikim-button {
   background-color: transparent;
   border-radius: var(--border-radius);
   border: 1px solid var(--primary-color-darker);
@@ -38,6 +38,7 @@ button {
   border-radius: var(--border-radius);
   overflow: hidden;
 }
+
 .ikim-button-primary {
   position: relative;
   background: radial-gradient(
@@ -51,6 +52,7 @@ button {
   transition: background 0.3s ease;
   z-index: 1;
 }
+
 .ikim-button-primary::before {
   content: "";
   position: absolute;
@@ -69,23 +71,17 @@ button {
   opacity: 1;
 }
 
-button.ikim-small {
-  border-radius: var(--border-radius-small);
-  padding: var(--spacing-small) var(--spacing-medium);
-}
-.ikim-button-primary-border.ikim-small {
-  border-radius: var(--border-radius-small);
-}
-
 .ikim-button-secundary {
   background-color: transparent;
   color: var(--light-text-color);
   transition: 500ms;
 }
+
 .ikim-button-tertiary {
   background-color: transparent;
   border: none;
 }
+
 .ikim-pulse {
   animation: pulse-animation 1.7s infinite;
 }
@@ -97,6 +93,71 @@ button.ikim-small {
   100% {
     box-shadow: 0 0 0 1rem rgba(255, 255, 255, 0);
   }
+}
+
+.ikim-button-primary-border.ikim-small,
+.ikim-link-primary-border.ikim-small {
+  border-radius: var(--border-radius-small);
+}
+
+.ikim-button-primary-border.ikim-small > .ikim-button-primary,
+.ikim-link-primary-border.ikim-small > .ikim-link-primary {
+  border-radius: calc(var(--border-radius-small) - 1px);
+}
+
+.ikim-button-primary-border.ikim-pulse,
+.ikim-link-primary-border.ikim-pulse {
+  animation: pulse-animation 1.7s infinite;
+}
+
+.ikim-button-primary,
+.ikim-link-primary {
+  position: relative;
+  background: radial-gradient(
+    circle at var(--mouse-x, 50%) var(--mouse-y, 100%),
+    hsl(40, 33%, 75%) 0%,
+    hsl(39, 53%, 52%) 50%
+  );
+  color: var(--background-color);
+  border: none;
+  border-radius: calc(var(--border-radius) - 1px);
+  transition: background 0.3s ease;
+  z-index: 1;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.ikim-button-primary::before,
+.ikim-link-primary::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: inherit;
+  border-radius: inherit;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+  z-index: -1;
+}
+
+.ikim-button-primary:hover::before,
+.ikim-link-primary:hover::before {
+  opacity: 1;
+}
+
+.ikim-button-primary:hover::before {
+  opacity: 1;
+}
+
+.ikim-button.ikim-small {
+  border-radius: var(--border-radius-small);
+  padding: var(--spacing-small) var(--spacing-medium);
+}
+.ikim-button-primary-border.ikim-small {
+  border-radius: var(--border-radius-small);
 }
 
 .ikim-text-center {
@@ -111,11 +172,11 @@ button.ikim-small {
 a {
   transition: 300ms;
 }
-.ikim-button-secundary:hover,
+/* .ikim-button-secundary:hover,
 .ikim-button-tertiary:hover,
 a:hover {
   color: var(--primary-color);
-}
+} */
 .ikim-button-secundary:hover {
   background-color: var(--primary-color-darker);
   border-color: var(--primary-color);
@@ -139,7 +200,7 @@ section {
 
 /* Hero section */
 header {
-  background-image: url(assets/ikimhero.jpg);
+  background-image: url(https://cdn.jsdelivr.net/gh/gauss-design/Ikim@refs/heads/main/assets/ikimhero.jpg);
   background-size: cover;
   background-position: center;
   position: relative;
@@ -148,22 +209,9 @@ header {
 .ikim-nav-wrapper {
   position: relative;
   border-radius: var(--border-radius);
-  /* background-image: var(--gradient-border-color);
-    padding: 1px;
-    width: 100%; */
+
 }
-/* .nav-shadow {
-    position: relative;
-    border-bottom: 1.2rem solid var(--shadow-color);
-    border-left: clamp(7rem, 20vw, 20rem) solid transparent;
-    border-right: clamp(7rem, 20vw, 20rem) solid transparent;
-    height: 0;
-    width: 70%;
-    margin: 0 auto;
-    rotate: 180deg;
-    filter: blur(1rem);
-    top: -1rem;
-} */
+
 
 nav {
   font-family: var(--font-family-main);
@@ -228,7 +276,7 @@ nav {
   display: flex;
   gap: var(--spacing-medium);
   border-radius: var(--border-radius);
-  /* border: 1px solid var(--primary-color); */
+  align-items: center;
   padding: var(--spacing-small) var(--spacing-medium);
 }
 
@@ -304,7 +352,7 @@ nav {
 }
 
 .ikim-intro-card {
-  background-image: url(assets/laurel.svg);
+  background-image: url(https://cdn.jsdelivr.net/gh/gauss-design/Ikim@refs/heads/main/assets/laurel.svg);
   background-size: contain;
   background-position: center;
   text-align: center;
@@ -513,10 +561,11 @@ nav {
   display: flex;
   flex-wrap: wrap;
   gap: var(--spacing-medium);
+  padding-bottom: var(--spacing-large);
 }
 .ikim-lecture-card {
   background-image: linear-gradient(to top, rgba(0, 0, 0), rgba(0, 0, 0, 0)),
-    url(assets/thumbnail-lecture.png);
+    url(https://cdn.jsdelivr.net/gh/gauss-design/Ikim@refs/heads/main/assets/thumbnail-lecture.png);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -548,7 +597,7 @@ nav {
   margin-top: var(--spacing-medium);
   text-align: center;
 }
-.ikim-lecture-cta > button {
+.ikim-lecture-cta > a {
   color: var(--background-color);
 }
 
@@ -814,7 +863,7 @@ img {
   height: auto;
 }
 .ikim-lecture-herobg {
-  background-image: url(assets/lecturehero.jpg);
+  background-image: url(https://cdn.jsdelivr.net/gh/gauss-design/Ikim@refs/heads/main/assets/lecturehero.jpg);
   background-size: cover;
   background-position: center;
   position: relative;
@@ -908,4 +957,9 @@ img {
     display: grid;
     grid-template-columns: auto;
   }
+}
+
+.ikim-link-small {
+  border-radius: var(--border-radius-small);
+  padding: var(--spacing-small) var(--spacing-medium);
 }

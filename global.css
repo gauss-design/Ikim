@@ -53,6 +53,10 @@
 }
 
 /* Global Styles */
+
+html {
+  font-size: 100%;
+}
 body {
   background-color: var(--background-color);
   color: var(--light-text-color);
@@ -70,6 +74,7 @@ h4 {
   font-family: var(--font-family-main);
   line-height: 1.1;
   font-weight: 400;
+  color: var(--text-color);
 }
 
 h1 {
@@ -97,6 +102,11 @@ ul {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-small);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 select {
